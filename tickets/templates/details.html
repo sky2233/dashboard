@@ -1,0 +1,101 @@
+{% extends "main.html" %}
+<html>
+<head>
+    <title>{{details.ticket_title}}</title>
+</head>
+<body>
+    {% block content %}
+    <!-- details(top) -->
+    <table class="dataTable detailTable">
+        <tr>
+            <th><h2>{{details.ticket_title}}</h2></th>
+            <th>{{details.ticket_status}}</th>
+        </tr>
+        <tr>
+            <td>{{details.ticket_created}}</td>
+        </tr>
+    </table>
+
+    <!-- tab -->
+    <div style="width: 90%; margin: auto;margin-top: 3vh;">
+        <div class="tabBtn">
+            <button class="tablinks active" onclick="changeTab(event, 'detailsTab')" id="defaultOpen">Details</button>
+            <button class="tablinks" onclick="changeTab(event, 'commentsTab')">Comments</button>
+        </div>
+
+        <!-- tab(details) -->
+        <div id="detailsTab" class="tabDiv" style="display: block;">
+            <table class="detailsTabTable">
+                <tr>
+                    <td class="width25">Ticket Priority</td>
+                    <td>{{details.ticket_priority}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket Priority2</td>
+                    <td>{{details.ticket_priority2}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket Source IP</td>
+                    <td>{{details.ticket_sourceip}}</td>
+                </tr>
+                <tr>
+                    <td>Ticket Details</td>
+                    <td>{{details.ticket_details}}</td>
+                </tr>
+                <tr>
+                    <td>Created By</td>
+                    <td>{{details.created_by}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- tab(comments) -->
+        <div id="commentsTab" class="tabDiv" style="display: none;">
+            {% if comment.count == 0 %}
+                No comments found
+            {% else %}
+                <div style="width: 90%; margin: auto;">
+                    {% for x in comment %}
+                        <div id="comment{{x.comment_id}}">
+                            <p class="left">{{x.comment_details}}</p>
+                            <p class="right">{{x.comment_date}}</p>       
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="commentForm">
+                <form action="/details/postComments" method="POST" id="commentForm" name="commentForm">
+                    {% csrf_token %} 
+                    {{ form }}
+                    <input type="hidden" id="parentID" name="parentID" value="{{id}}">
+                    <textarea rows="4" cols="50" class="inputForm" type="text" id="commentText" name="commentText"></textarea>
+                    <br>
+                    <input class="button" type="submit" value="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeTab(event, element){
+            var ele = document.getElementById(element)
+
+            tab = document.getElementsByClassName("tabDiv")
+            for (i = 0; i < tab.length; i++) {
+                tab[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(element).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+    </script>
+
+    {% endblock %}
+
+</body>
+</html>

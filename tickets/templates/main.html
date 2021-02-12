@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css.css' %}"  media="all" >
+</head>
+<body>
+    <!-- nav bar -->
+    {% block navBar %}
+    <nav class="navBar">
+        <h2><a href="/">DashBoard</a></h2>
+        <a href="/admin" class="link" style="float: right">Admin</a>
+    </nav>
+    {% endblock %}
+
+    <!-- ticket count -->
+    {% block content %}
+    <table class="part1Table">
+        <tr>
+            <td>
+                <table class="countTable">
+                    <tr>
+                        <td colspan="2">
+                            <table class="smallTable">
+                                <tr>
+                                    <th>Total Tickets</th>
+                                </tr>
+                                <tr>
+                                    <td>{{total}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="smallTable">
+                                <tr>
+                                    <th>Open</th>
+                                </tr>
+                                <tr>
+                                    <td>{{open.count}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="smallTable">
+                                <tr>
+                                    <th>Closed</th>
+                                </tr>
+                                <tr>
+                                    <td>{{close.count}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="smallTable border" style="height: 100%;">
+                    <tr>
+                        <th colspan="2">Priority</th>
+                    </tr>
+                    <tr>
+                        <td>Level 1</td>
+                        <td>{{level1.count}}</td>
+                    </tr>
+                    <tr>
+                        <td>Level 2</td>
+                        <td>{{level2.count}}</td>
+                    </tr>
+                    <tr>
+                        <td>Level 3</td>
+                        <td>{{level3.count}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- graph? -->
+    <!-- data -->
+    <table class="dataTable" id="Table">
+        <tr>
+            <th>Ticket Title</th>
+            <th>Date Created</th>
+            <th id="pri">Priority</th>
+            <th>Status</th>
+            <th>Owner</th>
+            <!-- <th>Details</th> -->
+            <th>ID</th>
+        </tr>
+        {% for x in tickets %}
+            <tr>
+                
+                <td>
+                    <form method='GET' action='/details/' id="form">
+                        {{ form }}
+                        <input type='hidden' id="ticketID" name='ticketID' value='{{x.demisto_id}}'>
+                        <!-- <a href="#" onclick="$(this).closest('form').submit();">{{x.ticket_title}}</a> -->
+                        <a href="#" onclick="details(this)" id="{{x.demisto_id}}">{{x.ticket_title}}</a>
+                    </form>
+                </td>
+                <td>{{x.ticket_created}}</td>
+                <td>{{x.ticket_priority}}</td>
+                {% if x.ticket_status == "Closed" %}
+                    <td class="closed">{{x.ticket_status}}</td>
+                {% else %}
+                    <td class="open">{{x.ticket_status}}</td>
+                {% endif %}
+                <td>{{x.ticket_owner}}</td>
+                <!-- <td>{{x.ticket_details}}</td> -->
+                <td>{{x.ticket_id}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function details(item) {
+            var node = item;
+            var form = node.closest('form');
+            var x = node.previousElementSibling.value;
+
+            form.submit();
+            // window.location.href = "/details/";
+        }
+    </script>
+    {% endblock %}
+</body>

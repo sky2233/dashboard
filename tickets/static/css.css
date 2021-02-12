@@ -1,0 +1,208 @@
+body {
+    margin: 0;
+    color: black;
+}
+
+th {
+    padding: 8px;
+}
+
+td {
+    padding: 6px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.left {
+    text-align: left;
+    background-color: whitesmoke;
+    padding: 12px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+.right {
+    text-align: right;
+    background-color: whitesmoke;
+    padding: 12px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.white {
+    color: white;
+    background-color: white;
+}
+
+.link {
+    text-decoration: none;
+    color: gray;
+}
+
+.navBar {
+    background-color: lightsteelblue;
+    padding: 10px;
+    margin-bottom: 3vh;
+    overflow: auto;
+}
+
+.navBar h2 {
+    width: fit-content;
+    float: left;
+    margin: 0;
+}
+
+.navBar a {
+    text-align: center;
+    color: black;
+}
+
+.part1Table {
+    table-layout: fixed ;
+    width: 60%;
+    margin: auto;
+}
+
+.countTable {
+    margin: 0 !important;
+    text-align: center;
+    width: 100%;
+}
+
+.smallTable {
+    text-align: center;
+    width: 100%;
+    font-size: larger;
+    border: gray solid 1px;
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+.smallTable th {
+    border-bottom: gray solid 1px;
+}
+
+.dataTable {
+    width: 90%;
+    margin: auto;
+    margin-top: 5vh;
+    border: gray solid 1px;
+    border-collapse: collapse;
+}
+
+.dataTable th {
+    border: gray solid 1px;
+    border-collapse: collapse;
+}
+
+.dataTable td {
+    border: gray solid 1px;
+    border-collapse: collapse;
+}
+
+.closed {
+    background-color: lightslategray;
+}
+
+.open {
+    background-color: lightgreen;
+}
+
+.detailTable {
+    border: none !important;
+}
+
+.detailTable th{
+    border: none !important;
+}
+
+.detailTable td{
+    border: none !important;
+}
+
+.detailTable h2{
+    text-align: left;
+    margin: 0;
+}
+
+.tabBtn {
+    overflow: hidden;
+    border: none;
+    padding: 0px;
+    border-bottom: 1px solid steelblue;
+}
+
+.tabBtn button {
+    color: black;
+    background-color: white;
+    font-size: larger;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+  
+.tabBtn button:hover  {
+    color: lightslategray;
+}
+
+.tabBtn button.active {
+    background-color: white;
+    color: navy;
+    font-weight: bold;
+}
+  
+.tabDiv {
+    background-color: white;
+    display: none;
+    padding: 4px;
+    margin-top: 3vh;
+}
+
+.detailsTabTable {
+    width: 95%;
+    margin: auto;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.width25 {
+    width: 25%;
+}
+
+.commentTable {
+    width: 90%;
+    margin: auto;
+    border-collapse: collapse;
+    border: none;
+}
+
+.commentForm {
+    width: 90%;
+    margin: auto;
+    margin-top: 3vh;
+}
+
+.inputForm {
+    width: calc(100% - 12px);
+    padding: 5px;
+}
+
+.button {
+    padding: 8px 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: steelblue;
+    color: white;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: lightsteelblue;
+    color: navy;
+}
